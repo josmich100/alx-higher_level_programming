@@ -1,3 +1,6 @@
 #!/usr/bin/python3
-for i in range(97, 123):
-    print("{}".format(chr(i)), end='')
+def element_at(my_list, idx):
+    if len(my_list) > idx >= 0:
+        return my_list[idx]
+    else:
+        return None
