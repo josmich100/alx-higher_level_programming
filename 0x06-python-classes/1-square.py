@@ -1,8 +1,18 @@
 #!/usr/bin/python3
+"""Class Square defines a square"""
+
 
 class Square:
-    """Defines a square."""
+    """This class defines a square.
 
-    def __init__(self, size):
-        """Initialize the Square instance with the given size."""
+    This class has no public attributes.
+
+    """
+    def __init__(self, size=0):
+        """This method initiates a square.
+
+        Args:
+            size (int): This defines the size of the square.
+
+        """
         self.__size = size
