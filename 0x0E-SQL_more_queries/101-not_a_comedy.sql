@@ -1,19 +1,14 @@
--- Lists all shows without the comedy genre in the database hbtn_0d_tvshows.
--- Records are ordered by ascending show title.
-SELECT DISTINCT `title`
-  FROM `tv_shows` AS t
-       LEFT JOIN `tv_show_genres` AS s
-       ON s.`show_id` = t.`id`
-
-       LEFT JOIN `tv_genres` AS g
-       ON g.`id` = s.`genre_id`
-       WHERE t.`title` NOT IN
-             (SELECT `title`
-                FROM `tv_shows` AS t
-	             INNER JOIN `tv_show_genres` AS s
-		     ON s.`show_id` = t.`id`
-
-		     INNER JOIN `tv_genres` AS g
-		     ON g.`id` = s.`genre_id`
-		     WHERE g.`name` = "Comedy")
- ORDER BY `title`;
+-- lists all shows without the genre Comedy
+-- The tv_genres table contains only one record where name = Comedy (but the id can be different)
+-- Each record should display: tv_shows.title
+-- Results are sorted in ascending order by show title
+SELECT tv_shows.title
+FROM tv_shows
+WHERE tv_shows.id NOT IN (
+    SELECT DISTINCT tv_show_genres.show_id
+    FROM tv_show_genres
+    JOIN tv_genres
+    ON tv_show_genres.genre_id = tv_genres.id
+    WHERE tv_genres.name = 'Comedy'
+)
+ORDER BY tv_shows.title;

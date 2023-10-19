@@ -1,11 +1,8 @@
--- Check if the database already exists and create it if it doesn't
-CREATE DATABASE IF NOT EXISTS hbtn_0d_2;
-
--- Check if the user already exists and create it if it doesn't
+-- creates the database hbtn_0d_2 in MySQL server.
+-- user_0d_2 has only SELECT privilege in the database hbtn_0d_2
+-- The user_0d_2 password is set to user_0d_2_pwd
+CREATE DATABASE IF NOT EXISTS `hbtn_0d_2`;
 CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost' IDENTIFIED BY 'user_0d_2_pwd';
-
--- Grant SELECT privilege on the database hbtn_0d_2 to the user
-GRANT SELECT ON hbtn_0d_2.* TO 'user_0d_2'@'localhost';
-
--- Flush privileges to apply the changes
+GRANT USAGE ON *.* TO 'user_0d_2'@'localhost';
+GRANT SELECT ON `hbtn_0d_2`.* TO 'user_0d_2'@'localhost';
 FLUSH PRIVILEGES;
