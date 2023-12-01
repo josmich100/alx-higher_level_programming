@@ -1,4 +1,3 @@
-""" Module that posts request of letter to specific website"""
 # !/usr/bin/python3
 import sys
 import requests
