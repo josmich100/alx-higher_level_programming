@@ -1,21 +1,30 @@
-# !/usr/bin/python3
-import sys
-import requests
+#!/usr/bin/python3
+"""
+Sends a POST request to http://0.0.0.0:5000/search_user with a letter as a parameter.
+Displays the result based on the conditions.
+"""
 
+import requests
+import sys
 
 if __name__ == "__main__":
-    # posts request of letter to specific website
-    URL = 'http://0.0.0.0:5000/search_user'
+    if len(sys.argv) == 2:
+        letter = sys.argv[1]
+    else:
+        letter = ""
+
+    url = 'http://0.0.0.0:5000/search_user'
+    data = {'q': letter}
+
+    response = requests.post(url, data=data)
+
     try:
-        q = {'q': sys.argv[1]}
-        r = requests.post(URL, data=q)
-        if r.headers.get('content-type') != 'application/json':
-            raise TypeError
-        if r.json():
-            print(f"[{r.json()['id']}] {r.json()['name']}")
+        json_data = response.json()
+
+        if json_data:
+            print("[{}] {}".format(json_data.get('id'), json_data.get('name')))
         else:
             print("No result")
-    except IndexError:
-        print("No result")
-    except TypeError:
+
+    except ValueError:
         print("Not a valid JSON")
