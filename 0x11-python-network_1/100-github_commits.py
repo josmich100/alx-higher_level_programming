@@ -1,4 +1,3 @@
-"""user Github API to list 10 commits from specific user in specific REPO"""
 # !/usr/bin/python3
 import sys
 import requests
