@@ -1,4 +1,3 @@
-"""module that displays value of X-Request-Id"""
 # !/usr/bin/python3
 import sys
 import requests
