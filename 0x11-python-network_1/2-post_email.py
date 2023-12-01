@@ -1,4 +1,3 @@
-"""Module with code that sends EMAIL POST request"""
 # !/usr/bin/python3
 import urllib.request
 import urllib.parse
