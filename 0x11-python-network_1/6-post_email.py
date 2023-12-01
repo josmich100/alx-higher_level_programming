@@ -1,4 +1,3 @@
-"""module that posts an email"""
 # !/usr/bin/python3
 import sys
 import requests
