@@ -1,4 +1,3 @@
-"""script that takes your GitHub credentials to display your id"""
 # !/usr/bin/python3
 import sys
 import requests
