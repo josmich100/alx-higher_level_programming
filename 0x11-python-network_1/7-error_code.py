@@ -1,4 +1,3 @@
-""" Module that handles error codes"""
 # !/usr/bin/python3
 import sys
 import requests
