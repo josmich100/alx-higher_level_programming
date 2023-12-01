@@ -1,4 +1,3 @@
-"""Module with code that manages eror code"""
 # !/usr/bin/python3
 import urllib.request
 import urllib.error
