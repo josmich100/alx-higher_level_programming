@@ -1,4 +1,3 @@
-"""a Python script that fetches https://alx-intranet.hbtn.io/status"""
 # !/usr/bin/python3
 # Module with code that fetches a URL
 import urllib.request
