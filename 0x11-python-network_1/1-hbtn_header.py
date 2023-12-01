@@ -1,4 +1,3 @@
-"""Script that takes in a URL, sends a request and displays the Id"""
 # !/usr/bin/python3
 import urllib.request
 import sys
