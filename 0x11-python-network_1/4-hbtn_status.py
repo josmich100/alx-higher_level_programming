@@ -1,4 +1,3 @@
-"""module that fetches a website"""
 # !/usr/bin/python3
 import requests
 
