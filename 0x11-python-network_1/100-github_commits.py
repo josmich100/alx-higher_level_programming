@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Uses GitHub API to display the user id
+Lists 10 commits (from the most recent to oldest) of a GitHub repository by a user
 """
 
 import requests
@@ -8,17 +8,23 @@ import sys
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:
-        username = sys.argv[1]
-        password = sys.argv[2]
+        owner = sys.argv[2]
+        repo = sys.argv[1]
 
-        url = 'https://api.github.com/user'
+        url = f'https://api.github.com/repos/{owner}/{repo}/commits'
+        params = {'per_page': 10}
 
-        response = requests.get(url, auth=(username, password))
+        response = requests.get(url, params=params)
 
         try:
-            data = response.json()
-            print(data.get('id'))
+            commits = response.json()
+            for commit in commits:
+                sha = commit.get('sha')
+                author_name = commit.get('commit', {}).get('author', {}).get('name')
+                print(f"{sha}: {author_name}")
+
         except ValueError:
-            print("None")
+            print("Not a valid JSON")
+
     else:
-        print("Usage: ./10-my_github.py <username> <password>")
+        print("Usage: ./100-github_commits.py <repo_name> <owner_name>")
