@@ -3,19 +3,34 @@
 
 
 def find_peak(list_of_integers):
-    """ finds the peak of an unsorted list of ints """
+    """
+    Args:
+    - list_of_integers: A list of unsorted integers.
+
+    Returns:
+    - The peak element from the list.
+    - None if the list is empty.
+    """
+    # Check if the list is empty
     if not list_of_integers:
         return None
-    return rfind(list_of_integers, 0, len(list_of_integers) - 1,
-                 len(list_of_integers))
 
+    # Define the low and high indices
+    low = 0
+    high = len(list_of_integers) - 1
 
-def rfind(ilist, start, end, length):
-    """ recursive function to find peak """
-    mid = start + (end - start) // 2
-    if (mid == 0 or ilist[mid - 1] <= ilist[mid]) and\
-       (mid == length - 1 or ilist[mid + 1] <= ilist[mid]):
-        return ilist[mid]
-    if (mid > 0 and ilist[mid - 1] > ilist[mid]):
-        return rfind(ilist, start, mid - 1, length)
-    return rfind(ilist, mid + 1, end, length)
+    # Perform binary search to find the peak
+    while low < high:
+        # Calculate the mid index
+        mid = (low + high) // 2
+
+        # Compare the element at the mid index with the next element
+        if list_of_integers[mid] < list_of_integers[mid + 1]:
+            # If current element < next element, move low to mid + 1
+            low = mid + 1
+        else:
+            # If current element is greater, move high to mid
+            high = mid
+
+    # Return the element at the low index, which represents a peak
+    return list_of_integers[low]
