@@ -1,16 +1,17 @@
 #!/usr/bin/node
+
+// Write a script that display the status code of a GET request.
+// The first argument is the URL to request (GET)
+// The status code must be printed like this: code: <status code>
+// You must use the module request
 const request = require("request");
-const fs = require("fs");
-const filePath = process.argv[3];
-const url = "https://swapi-api.hbtn.io/api/films/" + process.argv[2];
-request(url, function (err, response, body) {
-  if (err) {
-    console.log(err);
+
+const url = process.argv[2];
+
+request(url, (error, response) => {
+  if (error) {
+    console.error(error);
   } else {
-    fs.writeFile(filePath, body, "utf-8", (err) => {
-      if (err) {
-        console.error(err);
-      }
-    });
+    console.log(`code: ${response.statusCode}`);
   }
 });
