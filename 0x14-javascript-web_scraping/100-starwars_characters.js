@@ -5,7 +5,7 @@
 // You must use the Star wars API
 // You must use the module request
 
-const request = require("request");
+const request = require('request');
 
 const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`;
 
