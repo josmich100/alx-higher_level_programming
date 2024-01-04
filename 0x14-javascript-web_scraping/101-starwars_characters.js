@@ -1,25 +1,38 @@
 #!/usr/bin/node
-// Write a script that prints all characters of a Star Wars movie:
-// The first argument is the Movie ID - example: 3 = “Return of the Jedi”
-// Display one character name by line
-// You must use the Star wars API
-// You must use the module request
+
 const request = require("request");
-const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`;
+
+const getCharacterDetails = (characterUrl) => {
+  return new Promise((resolve, reject) => {
+    request(characterUrl, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else {
+        const character = JSON.parse(body);
+        resolve(character.name);
+      }
+    });
+  });
+};
+
+const movieId = process.argv[2];
+const url = `https://swapi-api.hbtn.io/api/films/${movieId}`;
 
 request(url, (error, response, body) => {
   if (error) {
     console.error(error);
   } else {
     const characters = JSON.parse(body).characters;
-    for (const character of characters) {
-      request(character, (error, response, body) => {
-        if (error) {
-          console.error(error);
-        } else {
-          console.log(JSON.parse(body).name);
-        }
+
+    // Fetch and print character names using Promises
+    Promise.all(characters.map(getCharacterDetails))
+      .then((characterNames) => {
+        characterNames.forEach((name) => {
+          console.log(name);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    }
   }
 });
